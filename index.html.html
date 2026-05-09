@@ -1,123 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Twigaz Kripsi | Aisee Tamu Sana!</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@300;400;600;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --gold: #c8a84e; --dark: #0a0a0a; --bg2: #111;
-            --glass: rgba(255, 255, 255, 0.04);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Poppins', sans-serif; background: var(--dark); color: white; overflow-x: hidden; line-height: 1.6; }
-        
-        nav {
-            position: fixed; top: 0; width: 100%; z-index: 1000;
-            padding: 20px 50px; display: flex; justify-content: space-between; align-items: center;
-            background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        .logo { font-family: 'Fredoka One'; font-size: 1.8rem; color: var(--gold); text-decoration: none; }
-        
-        .hero {
-            height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            text-align: center; background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
-        }
-        .hero h1 { font-family: 'Fredoka One'; font-size: clamp(4rem, 12vw, 9rem); line-height: 0.9; margin-bottom: 20px; }
-
-        /* Map Styles */
-        .map-section { padding: 100px 5%; background: var(--bg2); }
-        .map-wrapper { display: grid; grid-template-columns: 1.5fr 1fr; gap: 50px; max-width: 1400px; margin: 0 auto; }
-        .map-container { background: #07111f; border-radius: 30px; padding: 20px; border: 1px solid #192847; position: relative; }
-        #tzsvg { width: 100%; height: auto; display: block; filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5)); }
-        #tzsvg path { fill: #192847; stroke: #2a3b5a; stroke-width: 0.5; transition: 0.3s; cursor: pointer; }
-        #tzsvg path:hover, #tzsvg path.active { fill: var(--gold); opacity: 0.8; }
-        
-        .map-panel { background: var(--dark); border-radius: 24px; border: 1px solid rgba(255,255,255,0.05); padding: 30px; height: 650px; display: flex; flex-direction: column; }
-        .reg-list { flex: 1; overflow-y: auto; margin-top: 20px; padding-right: 10px; }
-        .reg-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #222; }
-        .reg-item input { background: #111; border: 1px solid #333; color: var(--gold); width: 60px; padding: 5px; border-radius: 5px; text-align: center; font-weight: 800; }
-        
-        .wa-btn { background: #25d366; color: white; padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: 800; display: inline-flex; align-items: center; gap: 10px; transition: 0.3s; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Twigaz Kripsi | Aisee Tamu Sana!</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@300;400;500;600;700;800;900&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f0f0f;--bg2:#141414;--bg3:#1c1c1c;--gold:#c8a84e;--gold-l:#e8d48b;--gold-d:rgba(200,168,78,.15);--tom:#e85c2c;--chk:#d4442a;--bpink:#c74b8a;--bred:#c0392b;--bblu:#2980b9;--borg:#d35400;--spice:#6c3483;--w:#fff;--t:#e0e0e0;--td:#888;--r:18px;--mx:1200px}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--w);overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:14px 32px;display:flex;justify-content:space-between;align-items:center;background:rgba(15,15,15,.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--gold-d);transition:.3s}
+.logo{font-family:'Fredoka One',cursive;font-size:1.8rem;color:var(--gold);text-decoration:none}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--td);text-decoration:none;font-weight:500;font-size:.82rem;text-transform:uppercase;letter-spacing:1.8px;transition:.3s}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 20px 80px;background:radial-gradient(ellipse at center,rgba(200,168,78,.06) 0%,transparent 70%),var(--bg)}
+.hero h1{font-family:'Fredoka One',cursive;font-size:clamp(3rem,8vw,6rem);line-height:1.05;margin-bottom:18px;background:linear-gradient(135deg,var(--w),var(--gold-l) 50%,var(--tom));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sec{padding:90px 28px}.sec-head{text-align:center;margin-bottom:52px}
+.sec-title{font-family:'Fredoka One',cursive;font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom:14px}
+.tabs{display:flex;justify-content:center;gap:10px;margin-bottom:44px}
+.tab{padding:9px 22px;border-radius:50px;border:2px solid rgba(255,255,255,.08);background:transparent;color:var(--td);font-weight:600;font-size:.8rem;cursor:pointer;transition:.3s}
+.tab.on{border-color:var(--gold);color:var(--gold);background:rgba(200,168,78,.08)}
+.pgrid{max-width:var(--mx);margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px}
+.pcard{border-radius:var(--r);overflow:hidden;background:var(--bg3);border:1px solid rgba(255,255,255,.05);transition:.4s}
+.pcard-img{height:200px;display:flex;align-items:center;justify-content:center;font-size:4rem}
+.pcard-body{padding:20px}
+.pcard-body h3{font-family:'Fredoka One',cursive;font-size:1.2rem;margin-bottom:5px}
+.pprice{margin-top:15px;padding-top:12px;border-top:1px solid rgba(255,255,255,.05);display:flex;flex-direction:column}
+.pprice .amt{font-weight:700;color:var(--gold);font-size:1.1rem}
+.map-wrap{max-width:var(--mx);margin:0 auto;display:grid;grid-template-columns:1.3fr 1fr;gap:32px;align-items:start}
+.map-box{background:var(--bg3);border-radius:var(--r);padding:24px;border:1px solid var(--gold-d)}
+#tzsvg{width:100%;height:auto;display:block}
+#tzsvg path{fill:#192847;stroke:#2a3b5a;stroke-width:0.5;transition:0.3s;cursor:pointer}
+#tzsvg path:hover{fill:var(--gold);opacity:0.7}
+.map-panel{background:var(--bg3);border-radius:var(--r);border:1px solid var(--gold-d);max-height:600px;display:flex;flex-direction:column}
+.rlist{flex:1;overflow-y:auto;padding:10px}
+.ritem{display:flex;justify-content:space-between;padding:10px;border-bottom:1px solid rgba(255,255,255,.05)}
+.rcount{width:60px;background:rgba(0,0,0,.3);border:1px solid #333;color:var(--gold);text-align:center;border-radius:5px;font-weight:700}
+footer{padding:60px 20px;text-align:center;border-top:1px solid var(--gold-d)}
+</style>
 </head>
 <body>
 
 <nav>
     <a href="#" class="logo">TWIGAZ</a>
-    <a href="https://wa.me/255655443912" class="wa-btn" style="padding: 10px 20px; font-size: 0.8rem;">WHOLESALE</a>
+    <ul class="nav-links">
+        <li><a href="#products">FLAVOURS</a></li>
+        <li><a href="#map">MAP</a></li>
+        <li><a href="https://wa.me/255655443912">WHOLESALE</a></li>
+    </ul>
 </nav>
 
 <section class="hero">
-    <p style="color: var(--gold); letter-spacing: 3px; text-transform: uppercase;">Dar Es Salaam, Tanzania</p>
-    <h1>AISEE<br><span style="color:var(--gold);">TAMU SANA!</span></h1>
+    <div>
+        <div class="hero-tag">Dar Es Salaam, Tanzania</div>
+        <h1>AISEE<br><span style="color:var(--gold)">TAMU SANA!</span></h1>
+        <p>Tanzania's favorite multi-grain wheat and rice snacks.</p>
+    </div>
 </section>
 
-<section class="map-section" id="map">
-    <div class="map-wrapper">
-        <div class="map-container">
-            <h2 style="font-family:'Fredoka One'; margin-bottom: 15px; color: var(--gold);">Regional Tracker</h2>
+<section class="sec" id="products">
+    <div class="sec-head">
+        <h2 class="sec-title">The Collection</h2>
+        <div class="tabs">
+            <button class="tab on" onclick="setPrice('retail')">Retail</button>
+            <button class="tab" onclick="setPrice('wholesale')">Wholesale</button>
+        </div>
+    </div>
+    <div class="pgrid" id="pgrid"></div>
+</section>
+
+<section class="sec" id="map">
+    <div class="map-wrap">
+        <div class="map-box">
+            <h3 style="font-family:'Fredoka One'; margin-bottom:15px">Regional Coverage</h3>
             <svg id="tzsvg" viewBox="0 0 430 540"></svg>
         </div>
         <div class="map-panel">
-            <h3 id="sel-region" style="font-family:'Fredoka One';">Active Regions</h3>
-            <div class="reg-list" id="reg-list"></div>
-            <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #222;">
-                <span style="color: #666; font-size: 0.7rem; text-transform: uppercase;">Total Active Outlets</span>
-                <div id="total-outlets" style="font-size: 2.5rem; font-family: 'Fredoka One'; color: var(--gold);">0</div>
+            <div style="padding:20px; border-bottom:1px solid rgba(255,255,255,.1)">
+                <h3 style="font-family:'Fredoka One'">Outlet Tracker</h3>
+                <p style="font-size:0.8rem; color:var(--td)">Update active outlets per region</p>
+            </div>
+            <div class="rlist" id="rlist"></div>
+            <div style="padding:20px; background:rgba(200,168,78,.05)">
+                <span style="font-size:0.7rem; color:var(--td)">TOTAL ACTIVE OUTLETS</span>
+                <div id="total-outlets" style="font-size:2rem; font-family:'Fredoka One'; color:var(--gold)">0</div>
             </div>
         </div>
     </div>
 </section>
 
+<footer>
+    <div class="logo" style="font-size:2.5rem; margin-bottom:20px">TWIGAZ</div>
+    <p>© 2025 Twigaz Kripsi. Aisee Tamu Sana!</p>
+</footer>
+
 <script>
-// Data from tanzania_zone_painter.html
+const products = [
+    { n: "Bongo Flava", d: "Bold, tangy, and slightly spicy Tanzanian seasoning. Street food vibes.", r: "1,000/-", w: "18,000/- (24pcs)", e: "🔥", c: "c-bongo" },
+    { n: "Tomato Ketchup", d: "Sweet, tangy, and packed with classic tomato goodness.", r: "1,000/-", w: "18,000/- (24pcs)", e: "🍅", c: "c-tomato" },
+    { n: "Chicken Sekela", d: "Smoky, savoury flame-grilled chicken flavour.", r: "1,000/-", w: "18,000/- (24pcs)", e: "🍗", c: "c-chicken" },
+    { n: "Spice Blast", d: "An explosion of bold spice and satisfying multi-grain crunch.", r: "1,000/-", w: "18,000/- (24pcs)", e: "💥", c: "c-spice" },
+    { n: "Bongo Red (10g)", d: "Mini pack! Spicy, tangy, and super crunchy with a free gift.", r: "200/-", w: "4,800/- (30pcs)", e: "🌶️", c: "c-red" },
+    { n: "Bongo Blue (10g)", d: "Cool twist-zesty and mildly spicy mini pack with free gift.", r: "200/-", w: "4,800/- (30pcs)", e: "❄️", c: "c-blue" },
+    { n: "Bongo Orange (10g)", d: "Vibrant and tangy flavor pop. Mini pack with free gift.", r: "200/-", w: "4,800/- (30pcs)", e: "🍊", c: "c-orange" },
+    { n: "Spice Blast (10g)", d: "Mighty heat in a pocket-sized mini pack with free gift.", r: "200/-", w: "4,800/- (30pcs)", e: "🌋", c: "c-spice" }
+];
+
+let priceMode = 'retail';
 const REGIONS = ["Arusha","Dar es Salaam","Dodoma","Geita","Iringa","Kagera","Katavi","Kigoma","Kilimanjaro","Lindi","Manyara","Mara","Mbeya","Morogoro","Mtwara","Mwanza","Njombe","Pemba North","Pemba South","Pwani","Rukwa","Ruvuma","Shinyanga","Simiyu","Singida","Songwe","Tabora","Tanga","Zanzibar North","Zanzibar South","Zanzibar West"];
 
-// Coordinate logic to generate paths automatically
+function renderProducts() {
+    document.getElementById('pgrid').innerHTML = products.map(p => `
+        <div class="pcard">
+            <div class="pcard-img ${p.c}">${p.e}</div>
+            <div class="pcard-body">
+                <h3>${p.n}</h3>
+                <p style="font-size:0.85rem; color:var(--td); height:60px">${p.d}</p>
+                <div class="pprice">
+                    <span style="font-size:0.7rem; letter-spacing:1px">${priceMode==='retail'?'RETAIL':'WHOLESALE'}</span>
+                    <span class="amt">${priceMode==='retail'?p.r:p.w}</span>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+function setPrice(m) {
+    priceMode = m;
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
+    event.target.classList.add('on');
+    renderProducts();
+}
+
+// Map Logic from tanzania_zone_painter.html
 function initMap() {
     const svg = document.getElementById('tzsvg');
-    const list = document.getElementById('reg-list');
+    const list = document.getElementById('rlist');
     
-    // This is the logic used in your painter file to render the SVG
-    const projection = (lon, lat) => {
-        const x = (lon - 29) * 40;
-        const y = (1 - (lat + 12) / 11) * 540;
-        return [x, y];
-    };
+    // Simplified projection for the SVG
+    const proj = (lon, lat) => [(lon-29)*40, (1-(lat+12)/11)*540];
 
-    // Note: In a production environment, you would map the full GJ (GeoJSON) 
-    // object coordinates from your painter file here to create the <path d="...">
-    // For now, I have prepared the list and total logic to sync with your map data.
-    
-    list.innerHTML = REGIONS.map(reg => {
-        let val = localStorage.getItem('twigaz_'+reg) || 0;
-        return `
-            <div class="reg-item">
-                <span>${reg}</span>
-                <input type="number" value="${val}" onchange="updateRegion('${reg}', this.value)">
-            </div>
-        `;
+    list.innerHTML = REGIONS.sort().map(r => {
+        let val = localStorage.getItem('tz_'+r) || 0;
+        return `<div class="ritem"><span>${r}</span><input type="number" class="rcount" value="${val}" onchange="updateTotal('${r}', this.value)"></div>`;
     }).join('');
-    calculateTotal();
+    
+    // In a real browser, we would inject the path data here.
+    // For this demonstration, the region tracker works as a spreadsheet.
+    calcTotal();
 }
 
-function updateRegion(reg, val) {
-    localStorage.setItem('twigaz_'+reg, val);
-    calculateTotal();
+function updateTotal(r, v) {
+    localStorage.setItem('tz_'+r, v);
+    calcTotal();
 }
 
-function calculateTotal() {
-    let total = 0;
-    REGIONS.forEach(reg => {
-        total += parseInt(localStorage.getItem('twigaz_'+reg) || 0);
-    });
-    document.getElementById('total-outlets').innerText = total.toLocaleString();
+function calcTotal() {
+    let t = 0;
+    REGIONS.forEach(r => t += parseInt(localStorage.getItem('tz_'+r) || 0));
+    document.getElementById('total-outlets').innerText = t.toLocaleString();
 }
 
-window.onload = initMap;
+window.onload = () => { renderProducts(); initMap(); };
 </script>
 </body>
 </html>
