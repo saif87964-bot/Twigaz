@@ -3,311 +3,194 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Twigaz Kripsi - Pure veg multi-grain chips made with pride in Dar es Salaam, Tanzania.">
 <title>Twigaz Kripsi | Aisee Tamu Sana!</title>
-<link rel="icon" type="image/png" href="twigaz-logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@300;400;500;600;700;800;900&family=Caveat:wght@700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0f0f0f;--bg2:#141414;--bg3:#1c1c1c;--gold:#c8a84e;--gold-l:#e8d48b;--gold-d:rgba(200,168,78,.15);--tom:#e85c2c;--chk:#d4442a;--bpink:#c74b8a;--bred:#c0392b;--bblu:#2980b9;--borg:#d35400;--spice:#6c3483;--w:#fff;--t:#e0e0e0;--td:#888;--r:18px;--mx:1200px}
-*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--w);overflow-x:hidden}
+/* Updated Styling for Storytelling & B2B */
+:root{
+  --bg:#0f0f0f;--bg2:#141414;--bg3:#1c1c1c;
+  --gold:#c8a84e;--gold-l:#e8d48b;--gold-d:rgba(200,168,78,.15);
+  --tom:#e85c2c;--chk:#d4442a;--spice:#6c3483;
+  --w:#fff;--t:#e0e0e0;--td:#888;--r:18px;--mx:1200px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--w);overflow-x:hidden}
+
+/* Smooth Nav */
 nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:14px 32px;display:flex;justify-content:space-between;align-items:center;background:rgba(15,15,15,.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--gold-d);transition:.3s}
-.nav-logo{height:44px;filter:brightness(1.1)}.nav-links{display:flex;gap:28px;list-style:none}
-.nav-links a{color:var(--td);text-decoration:none;font-weight:500;font-size:.82rem;text-transform:uppercase;letter-spacing:1.8px;transition:.3s;position:relative}
-.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--gold);transition:.3s}
-.nav-links a:hover{color:var(--w)}.nav-links a:hover::after{width:100%}
-.hamburger{display:none;cursor:pointer;flex-direction:column;gap:5px;background:none;border:none}.hamburger span{width:26px;height:2px;background:var(--w);transition:.3s}
-.mob-nav{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.96);flex-direction:column;align-items:center;justify-content:center;gap:28px}
-.mob-nav.open{display:flex}.mob-nav a{color:var(--w);text-decoration:none;font-family:'Fredoka One',cursive;font-size:1.6rem}
-.mob-nav-close{position:absolute;top:18px;right:18px;font-size:2rem;color:var(--w);cursor:pointer;background:none;border:none}
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;padding:120px 20px 80px;background:radial-gradient(ellipse at 30% 40%,rgba(200,168,78,.06) 0%,transparent 60%),radial-gradient(ellipse at 70% 60%,rgba(232,92,44,.04) 0%,transparent 50%),var(--bg);overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background:repeating-conic-gradient(from 0deg,transparent 0deg 8deg,rgba(200,168,78,.012) 8deg 10deg);animation:spin 180s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.hero-inner{position:relative;z-index:2;max-width:760px}
-.hero-tag{font-family:'Caveat',cursive;font-size:1.3rem;color:var(--gold);letter-spacing:2px;margin-bottom:10px}
-.hero h1{font-family:'Fredoka One',cursive;font-size:clamp(3rem,8vw,6rem);line-height:1.05;margin-bottom:18px;background:linear-gradient(135deg,var(--w),var(--gold-l) 50%,var(--tom));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero p{font-size:1.05rem;color:var(--td);margin-bottom:36px;line-height:1.7;max-width:560px;margin-left:auto;margin-right:auto}
-.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-.btn{padding:13px 32px;border-radius:50px;font-family:'Poppins',sans-serif;font-weight:600;font-size:.9rem;text-decoration:none;cursor:pointer;transition:.3s;border:none;letter-spacing:.5px}
-.btn-gold{background:linear-gradient(135deg,var(--gold),var(--tom));color:var(--w);box-shadow:0 6px 28px rgba(200,168,78,.3)}
-.btn-gold:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(200,168,78,.5)}
-.btn-ghost{background:transparent;color:var(--gold);border:2px solid rgba(200,168,78,.35)}
-.btn-ghost:hover{border-color:var(--gold);background:rgba(200,168,78,.08)}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;margin-top:36px;padding:7px 18px;border-radius:50px;background:rgba(200,168,78,.08);border:1px solid rgba(200,168,78,.15);font-size:.75rem;color:var(--gold-l);letter-spacing:1px;text-transform:uppercase}
-.sec{padding:90px 28px;position:relative}.sec-head{text-align:center;margin-bottom:52px}
-.sec-label{font-family:'Caveat',cursive;font-size:1.15rem;color:var(--gold);letter-spacing:2px;margin-bottom:6px}
-.sec-title{font-family:'Fredoka One',cursive;font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom:14px}
-.sec-desc{font-size:.92rem;color:var(--td);max-width:560px;margin:0 auto;line-height:1.7}
-.story{background:var(--bg2)}.story-grid{max-width:var(--mx);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
-.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.stat{background:var(--bg3);border:1px solid var(--gold-d);border-radius:14px;padding:24px 18px;text-align:center}
-.stat-n{font-family:'Fredoka One',cursive;font-size:1.8rem;color:var(--gold)}.stat-l{font-size:.72rem;color:var(--td);margin-top:3px;text-transform:uppercase;letter-spacing:1px}
-.story-txt h3{font-family:'Fredoka One',cursive;font-size:2rem;margin-bottom:16px;line-height:1.25}
-.story-txt p{color:var(--td);line-height:1.8;margin-bottom:14px;font-size:.9rem}.hl{color:var(--gold);font-weight:600}
-.products{background:radial-gradient(ellipse at center bottom,rgba(200,168,78,.04) 0%,transparent 60%),var(--bg)}
-.tabs{display:flex;justify-content:center;gap:10px;margin-bottom:44px;flex-wrap:wrap}
-.tab{padding:9px 22px;border-radius:50px;border:2px solid rgba(255,255,255,.08);background:transparent;color:var(--td);font-family:'Poppins',sans-serif;font-weight:600;font-size:.8rem;cursor:pointer;transition:.3s;text-transform:uppercase;letter-spacing:1px}
-.tab:hover{border-color:rgba(255,255,255,.25);color:var(--w)}.tab.on{border-color:var(--gold);color:var(--gold);background:rgba(200,168,78,.08)}
-.pgrid{max-width:var(--mx);margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
-.pcard{border-radius:var(--r);overflow:hidden;position:relative;transition:transform .4s,box-shadow .4s;cursor:default;border:1px solid rgba(255,255,255,.05)}
-.pcard:hover{transform:translateY(-6px);box-shadow:0 16px 50px rgba(0,0,0,.5)}
-.pcard-img{height:260px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.pcard-img img{max-height:220px;max-width:85%;object-fit:contain;filter:drop-shadow(0 8px 24px rgba(0,0,0,.5));transition:transform .4s}
-.pcard:hover .pcard-img img{transform:scale(1.08) rotate(-3deg)}
-.pcard-img .emoji-ph{font-size:5rem;filter:drop-shadow(0 6px 16px rgba(0,0,0,.4))}
-.pcard-body{padding:22px 24px 24px;background:var(--bg3)}
-.pcard-body h3{font-family:'Fredoka One',cursive;font-size:1.2rem;margin-bottom:5px}
-.pcard-sz{font-size:.7rem;color:var(--td);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
-.pcard-body p{font-size:.84rem;color:var(--td);line-height:1.6;margin-bottom:14px}
-.pprice{display:flex;flex-direction:column;gap:3px;padding-top:12px;border-top:1px solid rgba(255,255,255,.05)}
-.pprice span{font-size:.78rem;color:var(--t)}.pprice .amt{font-weight:700;color:var(--gold)}
-.free-badge{position:absolute;top:14px;right:14px;background:var(--gold);color:var(--bg);font-size:.65rem;font-weight:700;padding:4px 11px;border-radius:50px;text-transform:uppercase;letter-spacing:1px;z-index:2}
-.c-bongo .pcard-img{background:linear-gradient(135deg,#e48abf,#c74b8a)}.c-tomato .pcard-img{background:linear-gradient(135deg,#f7a35c,#e85c2c)}
-.c-chicken .pcard-img{background:linear-gradient(135deg,#444,#1a1a1a)}.c-red .pcard-img{background:linear-gradient(135deg,#e74c3c,#c0392b)}
-.c-blue .pcard-img{background:linear-gradient(135deg,#5dade2,#2980b9)}.c-orange .pcard-img{background:linear-gradient(135deg,#f39c12,#d35400)}
+.nav-logo{height:44px;filter:brightness(1.1)}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--td);text-decoration:none;font-weight:500;font-size:.82rem;text-transform:uppercase;letter-spacing:1.8px;transition:.3s}
+.nav-links a:hover{color:var(--gold)}
+
+/* Hero Section */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;padding:120px 20px 80px;background:radial-gradient(circle at center, rgba(200,168,78,0.1) 0%, transparent 70%), var(--bg);}
+.hero h1{font-family:'Fredoka One',cursive;font-size:clamp(3.5rem,10vw,7rem);line-height:0.9;margin-bottom:20px;background:linear-gradient(135deg,var(--w),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+
+/* Story Card Enhancements */
+.pcard{border-radius:var(--r);overflow:hidden;position:relative;transition:all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);background:var(--bg3);border:1px solid rgba(255,255,255,0.05)}
+.pcard:hover{transform:translateY(-15px) scale(1.02);box-shadow:0 20px 40px rgba(0,0,0,0.6);border-color:var(--gold)}
+.pcard-img{height:280px;display:flex;align-items:center;justify-content:center;transition:background 0.5s}
+.pcard-img img{max-height:240px;filter:drop-shadow(0 15px 15px rgba(0,0,0,0.4));animation:float 6s ease-in-out infinite}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+
+/* Distributor Toggle */
+.price-toggle{display:flex;justify-content:center;align-items:center;gap:15px;margin-bottom:40px;background:var(--bg3);width:fit-content;margin-inline:auto;padding:8px;border-radius:50px;border:1px solid var(--gold-d)}
+.toggle-btn{padding:8px 20px;border-radius:50px;cursor:pointer;font-size:0.8rem;font-weight:600;transition:0.3s;color:var(--td)}
+.toggle-btn.active{background:var(--gold);color:var(--bg)}
+
+/* Regional Map Styles preserved from your original file */
+.map-sec{background:var(--bg2);padding:100px 0}
+#tzsvg path{cursor:pointer;transition:all 0.3s}
+#tzsvg path:hover{filter:brightness(1.5)}
+
+/* B2B Partner Section */
+.b2b-cta{background:linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('distributor-bg.jpg');background-size:cover;padding:80px 20px;text-align:center;border-radius:24px;margin:40px auto;max-width:var(--mx)}
+
+.btn{display:inline-block;padding:16px 40px;border-radius:50px;text-decoration:none;font-weight:700;transition:0.3s;text-transform:uppercase;letter-spacing:1px}
+.btn-gold{background:var(--gold);color:var(--bg)}
+.btn-gold:hover{background:var(--gold-l);transform:scale(1.05)}
+
+/* Product Flavor Gradients */
+.c-bongo .pcard-img{background:linear-gradient(135deg,#e48abf,#c74b8a)}
+.c-tomato .pcard-img{background:linear-gradient(135deg,#f7a35c,#e85c2c)}
+.c-chicken .pcard-img{background:linear-gradient(135deg,#444,#1a1a1a)}
 .c-spice .pcard-img{background:linear-gradient(135deg,#a569bd,#6c3483)}
-.ingredients{background:var(--bg2)}.ing-row{max-width:900px;margin:0 auto;display:flex;justify-content:center;gap:48px;flex-wrap:wrap}
-.ing-item{text-align:center}.ing-ico{width:80px;height:80px;border-radius:50%;background:var(--bg3);border:2px solid var(--gold-d);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:2.2rem;transition:.3s}
-.ing-ico:hover{transform:scale(1.1);border-color:var(--gold)}.ing-item h4{font-size:.85rem;margin-bottom:3px}.ing-item p{font-size:.72rem;color:var(--td)}
-.map-sec{background:radial-gradient(ellipse at 50% 100%,rgba(200,168,78,.05) 0%,transparent 50%),var(--bg)}
-.map-wrap{max-width:var(--mx);margin:0 auto;display:grid;grid-template-columns:1.3fr 1fr;gap:32px;align-items:start}
-.map-box{background:var(--bg3);border-radius:var(--r);padding:24px;border:1px solid var(--gold-d);position:relative}
-#tzsvg{width:100%;height:auto;display:block}
-#tzsvg path{transition:fill .25s}
-.map-panel{background:var(--bg3);border-radius:var(--r);border:1px solid var(--gold-d);overflow:hidden;display:flex;flex-direction:column;max-height:620px}
-.mp-head{padding:20px 22px;border-bottom:1px solid rgba(255,255,255,.05);display:flex;justify-content:space-between;align-items:center}
-.mp-head h3{font-family:'Fredoka One',cursive;font-size:1.25rem}
-.reset-btn{padding:6px 12px;font-size:0.7rem;background:rgba(255,255,255,0.05);color:var(--td);border-radius:4px;cursor:pointer;border:1px solid var(--gold-d);transition:.2s}
-.reset-btn:hover{background:rgba(255,255,255,0.1);color:var(--w)}
-.rlist{flex:1;overflow-y:auto;padding:6px 0}.rlist::-webkit-scrollbar{width:3px}.rlist::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px}
-.ritem{display:flex;align-items:center;justify-content:space-between;padding:11px 22px;border-bottom:1px solid rgba(255,255,255,.025);transition:.2s;cursor:pointer}
-.ritem:hover{background:rgba(200,168,78,.04)}.ritem.on{background:rgba(200,168,78,.08)}
-.ritem-left{display:flex;align-items:center;gap:10px}.rdot{width:7px;height:7px;border-radius:50%;flex-shrink:0}.rname{font-weight:500;font-size:.85rem}
-.rcount{width:62px;padding:5px 8px;border-radius:7px;border:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.3);color:var(--gold);font-family:'Poppins',sans-serif;font-weight:700;font-size:.85rem;text-align:center;outline:none;transition:.3s}
-.rcount:focus{border-color:var(--gold)}
-.mp-foot{padding:16px 22px;border-top:1px solid rgba(255,255,255,.05);display:flex;justify-content:space-between;align-items:center;background:rgba(200,168,78,.04)}
-.mp-foot-label{font-size:.8rem;color:var(--td);text-transform:uppercase;letter-spacing:1px}.mp-foot-num{font-family:'Fredoka One',cursive;font-size:1.5rem;color:var(--gold)}
-.contact{background:var(--bg2)}.cgrid{max-width:800px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.ccard{background:var(--bg3);border:1px solid var(--gold-d);border-radius:var(--r);padding:32px 22px;text-align:center;transition:.3s}
-.ccard:hover{transform:translateY(-4px);border-color:var(--gold)}.ccard-ico{font-size:1.8rem;margin-bottom:14px}
-.ccard h4{font-size:.78rem;color:var(--td);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px}
-.ccard a,.ccard p{color:var(--w);text-decoration:none;font-weight:600;font-size:.95rem}.ccard a:hover{color:var(--gold)}
-footer{padding:32px 32px 24px;border-top:1px solid var(--gold-d);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;background:var(--bg)}
-.flogo{height:32px;filter:brightness(1.1)}footer p{color:var(--td);font-size:.75rem}
-.flinks{display:flex;gap:18px}.flinks a{color:var(--td);text-decoration:none;font-size:.8rem;transition:.3s}.flinks a:hover{color:var(--gold)}
-@media(max-width:900px){nav{padding:12px 16px}.nav-links{display:none}.hamburger{display:flex}.sec{padding:60px 16px}.story-grid,.map-wrap{grid-template-columns:1fr}.cgrid{grid-template-columns:1fr}.pgrid{grid-template-columns:1fr}footer{flex-direction:column;text-align:center}.ing-row{gap:24px}}
+
+/* Hidden by default, toggled by JS */
+.wholesale-info{display:none}
+.active-wholesale .wholesale-info{display:block}
+.active-wholesale .retail-info{display:none}
+
+@media(max-width:768px){ .nav-links{display:none} .pgrid{grid-template-columns:1fr} }
 </style>
 </head>
 <body>
-<nav id="nav">
-  <img src="twigaz-logo.png" alt="Twigaz Kripsi" class="nav-logo" loading="lazy">
+
+<nav>
+  <img src="twigaz-logo.png" alt="Twigaz Logo" class="nav-logo">
   <ul class="nav-links">
-    <li><a href="#story">Our Story</a></li>
-    <li><a href="#products">Products</a></li>
-    <li><a href="#secrets">Chip Secrets</a></li>
-    <li><a href="#findus">Find Us</a></li>
+    <li><a href="#products">Flavours</a></li>
+    <li><a href="#distributors">Wholesale</a></li>
+    <li><a href="#findus">Map</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <button class="hamburger" aria-label="Open Menu" onclick="document.getElementById('mob').classList.add('open')">
-    <span></span><span></span><span></span>
-  </button>
 </nav>
-<div class="mob-nav" id="mob">
-  <button class="mob-nav-close" onclick="this.parentElement.classList.remove('open')">&times;</button>
-  <a href="#story" onclick="this.parentElement.classList.remove('open')">Our Story</a>
-  <a href="#products" onclick="this.parentElement.classList.remove('open')">Products</a>
-  <a href="#secrets" onclick="this.parentElement.classList.remove('open')">Chip Secrets</a>
-  <a href="#findus" onclick="this.parentElement.classList.remove('open')">Find Us</a>
-  <a href="#contact" onclick="this.parentElement.classList.remove('open')">Contact</a>
-</div>
 
 <section class="hero">
   <div class="hero-inner">
-    <div class="hero-tag">Wheat + Rice | Pure Veg | Multi-Grain</div>
+    <div class="hero-tag">Tanzania's Favourite Multi-Grain Crunch</div>
     <h1>Aisee<br>Tamu Sana!</h1>
-    <p>Mchanganyiko wa ajabu wa ngano na mchele katika kila pakiti ya Twigaz Kripsi. Crunchy, bold, and proudly made in Tanzania.</p>
-    <div class="hero-btns">
-      <a href="#products" class="btn btn-gold">Explore Flavours</a>
-      <a href="#findus" class="btn btn-ghost">Find Us Near You</a>
-    </div>
-    <div class="hero-badge">&#127807; 100% Vegetarian &nbsp;|&nbsp; &#127870; Wheat + Rice</div>
+    <p>The perfect blend of Wheat + Rice. Pure Veg. Pure Joy.</p>
+    <a href="#products" class="btn btn-gold">Explore the Collection</a>
   </div>
 </section>
 
-<section class="sec story" id="story">
-  <div class="story-grid">
-    <div>
-      <div class="stats-grid">
-        <div class="stat"><div class="stat-n">8</div><div class="stat-l">Flavours</div></div>
-        <div class="stat"><div class="stat-n">3</div><div class="stat-l">Pack Sizes</div></div>
-        <div class="stat"><div class="stat-n">100%</div><div class="stat-l">Vegetarian</div></div>
-        <div class="stat"><div class="stat-n">DSM</div><div class="stat-l">Born Here</div></div>
-      </div>
-    </div>
-    <div class="story-txt">
-      <div class="sec-label">Our Story</div>
-      <h3>Born in Dar.<br>Made with <span style="color:var(--gold)">Pride</span>.</h3>
-      <p>Twigaz Kripsi is about <span class="hl">joy in every bite</span>. Born in Dar es Salaam, we craft pure veg, multi-grain chips with irresistible flavours that capture the vibrant spirit of Tanzania.</p>
-      <p>From zesty spices to classic tastes, every crunch is a burst of happiness. Twigaz Kripsi, where delicious meets joyful, one chip at a time!</p>
-      <a href="https://alishoptz.com/" target="_blank" class="btn btn-ghost" style="margin-top:10px">Shop Online at Alishoptz</a>
-    </div>
-  </div>
-</section>
-
-<section class="sec products" id="products">
+<section class="sec" id="products">
   <div class="sec-head">
-    <div class="sec-label">The Range</div>
-    <h2 class="sec-title">Our Flavours</h2>
-    <p class="sec-desc">Every pack is a vibe. From bold Bongo Flava to smoky Chicken Sekela, pick your crunch.</p>
+    <div class="sec-label">Our Story in Every Bite</div>
+    <h2 class="sec-title">Pick Your Vibe</h2>
+    
+    <div class="price-toggle">
+      <div class="toggle-btn active" id="retailBtn" onclick="setMode('retail')">Retail View</div>
+      <div class="toggle-btn" id="wholesaleBtn" onclick="setMode('wholesale')">Distributor View</div>
+    </div>
   </div>
-  <div class="tabs">
-    <button class="tab on" data-f="all">All</button>
-    <button class="tab" data-f="big">Big Pack (45g / 20g)</button>
-    <button class="tab" data-f="mini">Minis (10g)</button>
-  </div>
-  <div class="pgrid" id="pgrid"></div>
+
+  <div class="pgrid" id="pgrid">
+    </div>
 </section>
 
-<section class="sec ingredients" id="secrets">
-  <div class="sec-head">
-    <div class="sec-label">Chip Secrets</div>
-    <h2 class="sec-title">What's Inside</h2>
-    <p class="sec-desc">Multi-grain goodness in every crisp. Pure veg, always.</p>
+<section class="sec b2b-cta" id="distributors">
+  <h2 style="font-family:'Fredoka One'; font-size: 2.5rem; margin-bottom: 20px;">Scale Your Business with Twigaz</h2>
+  <p style="color:var(--t); max-width: 600px; margin: 0 auto 30px;">Direct access to factory prices, high-margin retail packs, and dedicated regional support.</p>
+  <div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap;">
+     <div class="stat"><div class="stat-n">4,800/-</div><div class="stat-l">10g Carton Price</div></div>
+     <div class="stat"><div class="stat-n">18,000/-</div><div class="stat-l">45g Carton Price</div></div>
   </div>
-  <div class="ing-row">
-    <div class="ing-item"><div class="ing-ico">&#127806;</div><h4>Rice</h4><p>Light & crispy base</p></div>
-    <div class="ing-item"><div class="ing-ico">&#127805;</div><h4>Wheat</h4><p>Golden crunch</p></div>
-    <div class="ing-item"><div class="ing-ico">&#127805;</div><h4>Maize</h4><p>Multi-grain blend</p></div>
-    <div class="ing-item"><div class="ing-ico">&#127807;</div><h4>100% Veg</h4><p>No animal products</p></div>
-    <div class="ing-item"><div class="ing-ico">&#127873;</div><h4>Free Gift</h4><p>In every 10g pack!</p></div>
-  </div>
+  <a href="https://wa.me/255655443912?text=I%20want%20to%20become%20a%20Twigaz%20Distributor" class="btn btn-gold" style="margin-top:30px">Contact Wholesale Department</a>
 </section>
 
 <section class="sec map-sec" id="findus">
   <div class="sec-head">
-    <div class="sec-label">Distribution</div>
-    <h2 class="sec-title">Find Us Across Tanzania</h2>
-    <p class="sec-desc">Click any region on the map or edit outlet counts below. Data saves to your browser.</p>
+    <h2 class="sec-title">Distribution Tracker</h2>
+    <p>Click on the map to see regional availability.</p>
   </div>
-  <div class="map-wrap">
-    <div class="map-box"><svg id="tzsvg" viewBox="0 0 430 540" preserveAspectRatio="xMidYMid meet"></svg></div>
-    <div class="map-panel">
-      <div class="mp-head">
-        <h3>Distribution Tracker</h3>
-        <button class="reset-btn" onclick="resetData()">Reset Counts</button>
-      </div>
-      <div class="rlist" id="rlist"></div>
-      <div class="mp-foot"><span class="mp-foot-label">Total Outlets</span><span class="mp-foot-num" id="totalOut">0</span></div>
-    </div>
-  </div>
-</section>
-
-<section class="sec contact" id="contact">
-  <div class="sec-head">
-    <div class="sec-label">Get In Touch</div>
-    <h2 class="sec-title">Contact Us</h2>
-    <p class="sec-desc">For orders, distribution, or just to say tamu sana!</p>
-  </div>
-  <div class="cgrid">
-    <div class="ccard"><div class="ccard-ico">&#128222;</div><h4>Phone / WhatsApp</h4><a href="tel:+255655443912">+255 655 443 912</a></div>
-    <div class="ccard"><div class="ccard-ico">&#127760;</div><h4>Shop Online</h4><a href="https://alishoptz.com/" target="_blank">alishoptz.com</a></div>
-    <div class="ccard"><div class="ccard-ico">&#128247;</div><h4>Social</h4><a href="https://instagram.com/Twigaz" target="_blank">@Twigaz</a></div>
-  </div>
-</section>
-
-<footer>
-  <img src="twigaz-logo.png" alt="Twigaz" class="flogo">
-  <p>&copy; 2026 Twigaz Kripsi. All rights reserved. Dar es Salaam, Tanzania.</p>
-  <div class="flinks">
-    <a href="https://instagram.com/Twigaz" target="_blank">Instagram</a>
-    <a href="https://facebook.com/Twigaz" target="_blank">Facebook</a>
-    <a href="https://alishoptz.com/" target="_blank">Shop</a>
-  </div>
-</footer>
+  </section>
 
 <script>
-window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>50));
-
-const P=[
-  {name:'Bongo Flava',sz:'45g / 20g',cat:'big',desc:'A bold, tangy, and slightly spicy Tanzanian seasoning that brings street food vibes to every bite. Crunchy, zesty, and the real taste of Bongo!',p24:'18,000',p29:'11,500',cls:'c-bongo',img:'bongo.jpg',free:false},
-  {name:'Tomato Ketchup',sz:'45g / 20g',cat:'big',desc:'Sweet, tangy, and packed with classic tomato goodness. Every crunchy bite bursts with rich, juicy flavour and that nostalgic twist you love!',p24:'18,000',p29:'11,500',cls:'c-tomato',img:'tomato.jpg',free:false},
-  {name:'Chicken Sekela',sz:'45g / 20g',cat:'big',desc:'Smoky, savoury, and seasoned with the taste of flame-grilled chicken. Each crisp delivers that sekela vibe: rich and mouthwatering!',p24:'18,000',p29:'11,500',cls:'c-chicken',img:'chicken.jpg',free:false},
-  {name:'Spice Blast',sz:'45g / 20g',cat:'big',desc:'An explosion of bold spice and satisfying crunch! For those who like it fiery and full of flavour.',p24:'18,000',p29:'11,500',cls:'c-spice',img:null,emoji:'&#128293;',free:false},
-  {name:'Bongo Flava Red',sz:'10g',cat:'mini',desc:'Big Bongo flavour in a mini pack! Spicy, tangy, and super crunchy. Perfect for a quick, tasty moment anywhere, anytime.',pc:'4,800',pcs:'30',cls:'c-red',img:null,emoji:'&#127798;',free:true},
-  {name:'Bongo Flava Blue',sz:'10g',cat:'mini',desc:'A cool twist on the classic. Zesty, mildly spicy, and extra crispy! Perfect for snacking on the move.',pc:'4,800',pcs:'30',cls:'c-blue',img:null,emoji:'&#10052;',free:true},
-  {name:'Bongo Flava Orange',sz:'10g',cat:'mini',desc:'Vibrant and tangy with a hint of spice. Light, crunchy, and always tamu sana in every bite!',pc:'4,800',pcs:'30',cls:'c-orange',img:null,emoji:'&#127818;',free:true},
-  {name:'Spice Blast',sz:'10g',cat:'mini',desc:'Mini but mighty! The same bold spice explosion in a pocket-sized pack.',pc:'4,800',pcs:'30',cls:'c-spice',img:null,emoji:'&#128293;',free:true},
+const products = [
+  {
+    name: 'Bongo Flava',
+    desc: 'The real taste of Tanzania. Bold, tangy, and brings street food vibes to every bite.',
+    cat: 'big', size: '45g / 20g',
+    retail: '1,000 TZS',
+    wholesale: '18,000 / 11,500 TZS per carton',
+    cls: 'c-bongo', emoji: '🔥'
+  },
+  {
+    name: 'Chicken Sekela',
+    desc: 'Smoky, savoury flame-grilled goodness. The rich, mouthwatering sekela vibe you love.',
+    cat: 'big', size: '45g / 20g',
+    retail: '1,000 TZS',
+    wholesale: '18,000 / 11,500 TZS per carton',
+    cls: 'c-chicken', emoji: '🍗'
+  },
+  {
+    name: 'Bongo Flava Red',
+    desc: 'Big flavor, mini pack! Spicy and tangy—perfect for a quick crunchy moment on the go.',
+    cat: 'mini', size: '10g',
+    retail: '200 TZS',
+    wholesale: '4,800 TZS per carton (30 pcs)',
+    cls: 'c-tomato', emoji: '🌶️'
+  },
+  {
+    name: 'Spice Blast',
+    desc: 'An explosion of heat! For the brave snackers who crave a fiery multi-grain crunch.',
+    cat: 'mini', size: '10g',
+    retail: '200 TZS',
+    wholesale: '4,800 TZS per carton (30 pcs)',
+    cls: 'c-spice', emoji: '💥'
+  }
 ];
 
-function renderP(f){
-  f=f||'all';const g=document.getElementById('pgrid');const items=f==='all'?P:P.filter(x=>x.cat===f);
-  g.innerHTML=items.map(x=>'<div class="pcard '+x.cls+'">'+(x.free?'<div class="free-badge">Free Gift Inside!</div>':'')+
-    '<div class="pcard-img">'+(x.img?'<img src="'+x.img+'" alt="'+x.name+'" loading="lazy">':'<div class="emoji-ph">'+x.emoji+'</div>')+
-    '</div><div class="pcard-body"><h3>'+x.name+'</h3><div class="pcard-sz">'+x.sz+'</div><p>'+x.desc+'</p><div class="pprice">'+
-    (x.p24?'<span><span class="amt">TZS '+x.p24+'</span> / ctn (24 pcs)</span><span><span class="amt">TZS '+x.p29+'</span> / ctn (29 pcs)</span>':
-    '<span><span class="amt">TZS '+x.pc+'</span> / ctn ('+x.pcs+' pcs)</span>')+'</div></div></div>').join('');
+let currentMode = 'retail';
+
+function setMode(mode) {
+  currentMode = mode;
+  document.getElementById('retailBtn').classList.toggle('active', mode === 'retail');
+  document.getElementById('wholesaleBtn').classList.toggle('active', mode === 'wholesale');
+  renderProducts();
 }
 
-document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
-  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));t.classList.add('on');renderP(t.dataset.f);
-}));
-renderP();
-
-// Map & Distribution Script
-const REGIONS=["Dar es Salaam","Mwanza","Arusha","Dodoma","Mbeya","Iringa","Kagera","Kigoma","Lindi","Manyara","Mara","Morogoro","Mtwara","Njombe","Pwani","Ruvuma","Shinyanga","Simiyu","Singida","Songwe","Tabora","Tanga","Katavi","Geita","Zanzibar North","Zanzibar South","Zanzibar West","Pemba North","Pemba South"];
-let regionData={};
-REGIONS.forEach(r=>{ regionData[r]=parseInt(localStorage.getItem('tz_'+r))||0; });
-
-function updateTotal() {
-  const total = Object.values(regionData).reduce((a, b) => a + b, 0);
-  const el = document.getElementById('totalOut');
-  const start = parseInt(el.innerText) || 0;
-  let current = start;
-  const step = total > start ? 1 : -1;
-  if (current === total) return;
-  const timer = setInterval(() => {
-    current += step;
-    el.innerText = current;
-    if (current === total) clearInterval(timer);
-  }, 20);
+function renderProducts() {
+  const container = document.getElementById('pgrid');
+  container.innerHTML = products.map(p => `
+    <div class="pcard ${p.cls}">
+      <div class="pcard-img">
+        <span style="font-size: 5rem;">${p.emoji}</span>
+      </div>
+      <div style="padding:25px;">
+        <h3 style="font-family:'Fredoka One'; color:var(--gold);">${p.name}</h3>
+        <p style="font-size:0.8rem; margin:10px 0; color:var(--td);">${p.desc}</p>
+        <div style="border-top:1px solid #333; padding-top:15px; margin-top:10px;">
+           <small style="text-transform:uppercase; color:var(--gold); font-weight:bold;">${currentMode === 'retail' ? 'Price' : 'Wholesale Rate'}</small>
+           <div style="font-size:1.2rem; font-weight:800;">${currentMode === 'retail' ? p.retail : p.wholesale}</div>
+           <small style="color:var(--td)">Size: ${p.size}</small>
+        </div>
+      </div>
+    </div>
+  `).join('');
 }
 
-function resetData() {
-  if(confirm("Reset all distribution counts?")) {
-    REGIONS.forEach(r => {
-      regionData[r] = 0;
-      localStorage.removeItem('tz_' + r);
-    });
-    renderRegList();
-    updateTotal();
-  }
-}
-
-function renderRegList(){
-  const list=document.getElementById('rlist');
-  const sorted=[...REGIONS].sort((a,b)=>a.localeCompare(b));
-  list.innerHTML=sorted.map(r=>{
-    const isOn=regionData[r]>0;
-    return'<div class="ritem'+(isOn?' on':'')+'" data-r="'+r+'" onclick="highlightReg(\''+r.replace(/'/g,"\\'")+'\')">'
-    +'<div class="ritem-left"><div class="rdot" style="background:'+(isOn?'var(--gold)':'#333')+'"></div><span class="rname">'+r+'</span></div>'
-    +'<input type="number" class="rcount" value="'+regionData[r]+'" min="0" placeholder="0" onclick="event.stopPropagation()" onchange="updateReg(\''+r.replace(/'/g,"\\'")+'\'  ,this.value)">'
-    +'</div>';
-  }).join('');
-  updateTotal();
-}
-
-function updateReg(r,v){
-  regionData[r]=parseInt(v)||0;
-  localStorage.setItem('tz_'+r,regionData[r]);
-  renderRegList();
-}
-
-function highlightReg(name){
-  document.querySelectorAll('.ritem').forEach(i=>i.classList.remove('on'));
-  const target = document.querySelector(`.ritem[data-r="${name}"]`);
-  if(target) target.classList.add('on');
-}
-
-renderRegList();
+// Initialize
+renderProducts();
 </script>
+
 </body>
 </html>
