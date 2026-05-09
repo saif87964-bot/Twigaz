@@ -4,134 +4,305 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Twigaz Kripsi | Aisee Tamu Sana!</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@300;400;600;900&family=Caveat:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --gold: #c8a84e; --dark: #0a0a0a; --glass: rgba(255, 255, 255, 0.03);
-            --bongo: #c74b8a; --tomato: #e85c2c; --sekela: #1a1a1a; --spice: #6c3483;
+            --gold: #c8a84e; --dark: #0a0a0a; --darker: #050505;
+            --bongo: #c74b8a; --tomato: #e85c2c; --sekela: #222; --spice: #6c3483;
+            --blue: #2980b9; --orange: #d35400; --red: #c0392b;
+            --glass: rgba(255, 255, 255, 0.03);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Poppins', sans-serif; background: var(--dark); color: white; overflow-x: hidden; }
-
-        /* Smooth Floating Animation */
-        @keyframes floating {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(2deg); }
-            100% { transform: translateY(0px) rotate(0deg); }
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background: var(--dark); 
+            color: white; 
+            overflow-x: hidden;
+            scroll-snap-type: y proximity;
         }
 
-        /* Hero Section with Parallax Feeling */
+        /* Loading Animation */
+        .loader {
+            position: fixed; inset: 0; background: var(--darker); z-index: 10000;
+            display: flex; align-items: center; justify-content: center;
+            transition: 0.8s ease-in-out;
+        }
+        .loader.fade { opacity: 0; visibility: hidden; }
+
+        /* Navigation */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 20px 50px; display: flex; justify-content: space-between;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+            backdrop-filter: blur(10px); transition: 0.4s;
+        }
+        .logo-txt { font-family: 'Fredoka One'; font-size: 1.5rem; color: var(--gold); text-decoration: none; }
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links a { color: #888; text-decoration: none; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
+        .nav-links a:hover { color: white; }
+
+        /* Floating Wholesale Sidebar */
+        .wholesale-badge {
+            position: fixed; right: 30px; bottom: 30px; z-index: 999;
+            background: var(--gold); color: black; padding: 15px 25px;
+            border-radius: 50px; font-weight: 800; cursor: pointer;
+            box-shadow: 0 10px 30px rgba(200, 168, 78, 0.4);
+            display: flex; align-items: center; gap: 10px; transition: 0.3s;
+        }
+        .wholesale-badge:hover { transform: scale(1.05); background: white; }
+
+        /* Hero Section */
         .hero {
-            height: 100vh; display: flex; align-items: center; justify-content: center;
-            background: radial-gradient(circle at 50% 50%, rgba(200, 168, 78, 0.15), transparent);
-            text-align: center; position: relative;
+            height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
+            scroll-snap-align: start;
         }
-        .hero h1 { 
-            font-family: 'Fredoka One'; font-size: clamp(4rem, 15vw, 8rem); 
-            line-height: 0.8; text-transform: uppercase; letter-spacing: -2px;
+        .hero-title { font-family: 'Fredoka One'; font-size: clamp(4rem, 15vw, 10rem); line-height: 0.85; margin-bottom: 20px; }
+        .hero-subtitle { font-family: 'Caveat'; font-size: 2rem; color: var(--gold); }
+
+        /* Generic Flavor Section Styling */
+        .flavor-sec {
+            min-height: 100vh; position: relative; overflow: hidden;
+            display: flex; align-items: center; padding: 100px 8%;
+            scroll-snap-align: start;
+        }
+        .flavor-sec:nth-child(even) { flex-direction: row-reverse; }
+
+        .flavor-bg {
+            position: absolute; width: 600px; height: 600px; border-radius: 50%;
+            filter: blur(120px); opacity: 0.15; z-index: -1;
         }
 
-        /* Immersive Flavor Sections */
-        .flavor-section {
-            min-height: 100vh; padding: 100px 5%; display: flex; align-items: center;
-            position: relative; border-bottom: 1px solid rgba(255,255,255,0.05);
+        .flavor-img-wrap { flex: 1; display: flex; justify-content: center; perspective: 1000px; }
+        .flavor-img { 
+            width: 100%; max-width: 480px; 
+            filter: drop-shadow(0 50px 80px rgba(0,0,0,0.9)); 
+            transform: rotateY(-10deg) translateY(50px); opacity: 0;
+            transition: 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
-        .flavor-bg { position: absolute; inset: 0; opacity: 0.2; filter: blur(100px); z-index: -1; }
-        
-        .content-grid {
-            display: grid; grid-template-columns: 1fr 1.2fr; gap: 50px;
-            max-width: 1200px; margin: 0 auto; align-items: center;
+        .flavor-sec.visible .flavor-img { transform: rotateY(0) translateY(0); opacity: 1; }
+
+        .flavor-text { flex: 1; padding: 40px; }
+        .flavor-tag { font-size: 0.8rem; font-weight: 800; color: var(--gold); text-transform: uppercase; letter-spacing: 4px; margin-bottom: 10px; }
+        .flavor-name { font-family: 'Fredoka One'; font-size: 4rem; margin-bottom: 20px; }
+        .flavor-desc { color: #aaa; line-height: 1.8; font-size: 1.1rem; margin-bottom: 35px; max-width: 500px; }
+
+        /* Modern Price Grid */
+        .price-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
+        .price-card { 
+            background: var(--glass); padding: 20px; border-radius: 15px; 
+            border: 1px solid rgba(255,255,255,0.05); transition: 0.3s;
+        }
+        .price-card:hover { border-color: var(--gold); background: rgba(255,255,255,0.05); }
+        .price-card span { display: block; font-size: 0.7rem; color: var(--gold); text-transform: uppercase; margin-bottom: 5px; }
+        .price-card strong { font-size: 1.2rem; font-weight: 800; }
+
+        /* Distribution Tracker */
+        .map-sec { padding: 100px 5%; background: var(--darker); }
+        .map-container { 
+            display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px; 
+            max-width: 1400px; margin: 0 auto; 
+        }
+        .map-ui { background: var(--glass); border-radius: 24px; padding: 30px; height: 600px; overflow-y: auto; }
+        .region-row { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); 
+            cursor: pointer; transition: 0.3s;
+        }
+        .region-row:hover { background: rgba(200, 168, 78, 0.1); }
+        .region-count { 
+            background: #222; border: 1px solid #444; color: var(--gold); 
+            padding: 5px 10px; border-radius: 5px; width: 60px; text-align: center; font-weight: 800;
         }
 
-        .pack-img { 
-            width: 100%; max-width: 450px; filter: drop-shadow(0 30px 50px rgba(0,0,0,0.8));
-            animation: floating 6s ease-in-out infinite;
-        }
+        /* Footer */
+        footer { padding: 80px 50px; text-align: center; border-top: 1px solid #111; }
+        .footer-logo { font-family: 'Fredoka One'; font-size: 2rem; color: var(--gold); margin-bottom: 20px; }
 
-        .story-box h2 { font-family: 'Fredoka One'; font-size: 3.5rem; margin-bottom: 20px; }
-        .story-box p { font-size: 1.1rem; color: #ccc; line-height: 1.8; margin-bottom: 30px; }
-
-        /* Wholesale Glass Cards */
-        .distributor-card {
-            background: var(--glass); backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1); padding: 30px;
-            border-radius: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
-        }
-        .price-tag { border-left: 3px solid var(--gold); padding-left: 15px; }
-        .price-tag span { display: block; font-size: 0.8rem; color: var(--gold); text-transform: uppercase; }
-        .price-tag strong { font-size: 1.4rem; }
-
-        /* Action Buttons */
-        .cta-btn {
-            background: var(--gold); color: black; padding: 18px 40px;
-            border-radius: 50px; text-decoration: none; font-weight: 800;
-            display: inline-block; transition: 0.3s;
-        }
-        .cta-btn:hover { transform: scale(1.05); box-shadow: 0 0 30px var(--gold); }
-
-        @media (max-width: 900px) {
-            .content-grid { grid-template-columns: 1fr; text-align: center; }
-            .distributor-card { grid-template-columns: 1fr; }
+        @media (max-width: 1024px) {
+            .flavor-sec, .flavor-sec:nth-child(even) { flex-direction: column; text-align: center; padding-top: 120px; }
+            .map-container { grid-template-columns: 1fr; }
+            .flavor-img { max-width: 300px; }
+            .price-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <section class="hero">
-        <div>
-            <h1 style="color: var(--gold);">AISEE</h1>
-            <h1 style="margin-left: 50px;">TAMU SANA!</h1>
-            <p style="margin-top: 20px; letter-spacing: 5px; color: #888;">THE PRIDE OF TANZANIA [cite: 1, 2, 3, 4]</p>
-        </div>
+    <div class="loader" id="loader"><h2 style="font-family:'Fredoka One'; color:var(--gold);">TWIGAZ</h2></div>
+
+    <nav id="navbar">
+        <a href="#" class="logo-txt">TWIGAZ</a>
+        <ul class="nav-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#bongo">Flavours</a></li>
+            <li><a href="#tracker">Distribution</a></li>
+            <li><a href="#footer">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="wholesale-badge" onclick="window.location.href='https://wa.me/255655443912'">
+        <span>🛒</span> WHOLESALE ORDERS
+    </div>
+
+    <section class="hero" id="hero">
+        <div class="hero-subtitle">Wheat + Rice Multi-Grain</div>
+        <div class="hero-title">AISEE<br><span style="color:var(--gold);">TAMU SANA!</span></div>
+        <p style="color:#666; max-width: 600px;">Proudly crafted in Dar es Salaam. Pure Vegetarian. The ultimate Tanzanian crunch.</p>
     </section>
 
-    <section class="flavor-section" id="bongo">
-        <div class="flavor-bg" style="background: var(--bongo);"></div>
-        <div class="content-grid">
-            <img src="bongo-pack.png" alt="Bongo Flava" class="pack-img">
-            <div class="story-box">
-                <h2>Bongo Flava</h2>
-                <p>A bold, tangy, and slightly spicy Tanzanian seasoning that brings street food vibes to every bite. This is the real taste of Bongo! [cite: 18, 19]</p>
-                
-                <div class="distributor-card">
-                    <div class="price-tag">
-                        <span>Wholesale (45g/20g)</span>
-                        <strong>18,000/- per ctn [cite: 21]</strong>
-                        <small>24 pcs per carton [cite: 21]</small>
-                    </div>
-                    <div class="price-tag">
-                        <span>Mini Pack (10g)</span>
-                        <strong>4,800/- per ctn [cite: 62]</strong>
-                        <small>30 pcs per carton [cite: 62]</small>
-                    </div>
-                </div>
-                <a href="https://wa.me/255655443912" class="cta-btn" style="margin-top: 30px;">ORDER FOR DISTRIBUTION [cite: 101]</a>
+    <section class="flavor-sec" id="bongo">
+        <div class="flavor-bg" style="background: var(--bongo); top: 10%; right: 10%;"></div>
+        <div class="flavor-img-wrap">
+            <img src="bongo-main.png" alt="Bongo Flava" class="flavor-img" id="img-bongo">
+        </div>
+        <div class="flavor-text">
+            <div class="flavor-tag">The Hero Flavour</div>
+            <h2 class="flavor-name">Bongo Flava</h2>
+            <p class="flavor-desc">A bold, tangy, and slightly spicy Tanzanian seasoning that brings street food vibes to every bite. This is the real taste of Bongo!</p>
+            <div class="price-grid">
+                <div class="price-card"><span>45g Carton</span><strong>18,000/-</strong><small>24 pcs</small></div>
+                <div class="price-card"><span>20g Carton</span><strong>11,500/-</strong><small>29 pcs</small></div>
             </div>
         </div>
     </section>
 
-    <section class="flavor-section" id="sekela">
-        <div class="flavor-bg" style="background: #333;"></div>
-        <div class="content-grid" style="direction: rtl;">
-            <img src="chicken-pack.png" alt="Chicken Sekela" class="pack-img">
-            <div class="story-box" style="direction: ltr;">
-                <h2>Chicken Sekela</h2>
-                <p>Smoky, savoury, and seasoned with the taste of flame-grilled chicken. Every crisp delivers that mouthwatering "sekela" vibe! [cite: 38, 39]</p>
-                
-                <div class="distributor-card">
-                    <div class="price-tag">
-                        <span>Bulk (45g)</span>
-                        <strong>18,000/- [cite: 41]</strong>
-                    </div>
-                    <div class="price-tag">
-                        <span>Bulk (20g)</span>
-                        <strong>11,500/- [cite: 41]</strong>
-                    </div>
+    <section class="flavor-sec">
+        <div class="flavor-bg" style="background: var(--tomato); bottom: 10%; left: 10%;"></div>
+        <div class="flavor-img-wrap">
+            <img src="tomato-main.png" alt="Tomato Ketchup" class="flavor-img">
+        </div>
+        <div class="flavor-text">
+            <div class="flavor-tag">Classic & Tangy</div>
+            <h2 class="flavor-name" style="color:var(--tomato)">Tomato Ketchup</h2>
+            <p class="flavor-desc">Sweet, tangy, and packed with classic tomato goodness. Every crunchy bite bursts with a rich, nostalgic twist you love!</p>
+            <div class="price-grid">
+                <div class="price-card"><span>45g Carton</span><strong>18,000/-</strong></div>
+                <div class="price-card"><span>20g Carton</span><strong>11,500/-</strong></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="flavor-sec">
+        <div class="flavor-bg" style="background: white; opacity: 0.05; top: 20%; right: 20%;"></div>
+        <div class="flavor-img-wrap">
+            <img src="chicken-main.png" alt="Chicken Sekela" class="flavor-img">
+        </div>
+        <div class="flavor-text">
+            <div class="flavor-tag">Grilled Vibe</div>
+            <h2 class="flavor-name">Chicken Sekela</h2>
+            <p class="flavor-desc">Smoky, savoury, and seasoned with the taste of flame-grilled chicken. Every crisp delivers that mouthwatering "sekela" vibe.</p>
+            <div class="price-grid">
+                <div class="price-card"><span>45g Carton</span><strong>18,000/-</strong></div>
+                <div class="price-card"><span>20g Carton</span><strong>11,500/-</strong></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="flavor-sec">
+        <div class="flavor-bg" style="background: var(--spice); bottom: 20%; left: 20%;"></div>
+        <div class="flavor-img-wrap">
+            <img src="spice-main.png" alt="Spice Blast" class="flavor-img">
+        </div>
+        <div class="flavor-text">
+            <div class="flavor-tag">The Heat Is On</div>
+            <h2 class="flavor-name" style="color:var(--spice)">Spice Blast</h2>
+            <p class="flavor-desc">An explosion of bold spice and satisfying multi-grain crunch! For those who like it fiery and full of flavour.</p>
+            <div class="price-grid">
+                <div class="price-card"><span>45g Carton</span><strong>18,000/-</strong></div>
+                <div class="price-card"><span>20g Carton</span><strong>11,500/-</strong></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="flavor-sec" style="background: #080808;">
+        <div class="flavor-text" style="flex: 2; text-align: center;">
+            <div class="flavor-tag">Pocket Sized Joy</div>
+            <h2 class="flavor-name">The 10g Minis</h2>
+            <p class="flavor-desc" style="margin: 0 auto 40px;">Perfect for kiosks and schools. Available in Red, Blue, and Orange Bongo Flava, plus Spice Blast.</p>
+            
+            <div class="price-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); max-width: 900px; margin: 0 auto;">
+                <div class="price-card">
+                    <span>Carton Price</span>
+                    <strong style="font-size: 2rem; color:var(--gold);">4,800/-</strong>
+                    <p style="font-size: 0.8rem; color:#666;">30 Packs per Carton</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <section class="map-sec" id="tracker">
+        <div class="map-container">
+            <div style="background:#000; border-radius: 24px; padding: 40px; border: 1px solid #222;">
+                <h2 style="font-family:'Fredoka One'; margin-bottom: 20px;">Tanzania Coverage</h2>
+                <p style="color:#666; margin-bottom: 30px;">Distributors: Click your region to update outlet counts.</p>
+                <div style="width: 100%; height: 400px; background: #111; border-radius: 15px; display: flex; align-items: center; justify-content: center;">
+                    <span style="color:#333;">[Interactive Tanzania SVG Map]</span>
+                </div>
+            </div>
+            <div class="map-ui" id="regionList">
+                </div>
+        </div>
+    </section>
+
+    <footer id="footer">
+        <div class="footer-logo">TWIGAZ</div>
+        <p style="color:#555; margin-bottom: 30px;">&copy; 2026 Twigaz Kripsi. Dar es Salaam, Tanzania.</p>
+        <a href="https://wa.me/255655443912" class="logo-txt" style="font-size: 1rem;">WhatsApp: +255 655 443 912</a>
+    </footer>
+
+    <script>
+        // Loader
+        window.addEventListener('load', () => {
+            setTimeout(() => document.getElementById('loader').classList.add('fade'), 1000);
+        });
+
+        // Intersection Observer for Animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('.flavor-sec').forEach(sec => observer.observe(sec));
+
+        // Regional Data Logic
+        const REGIONS = ["Dar es Salaam", "Mwanza", "Arusha", "Dodoma", "Mbeya", "Iringa", "Morogoro", "Tanga", "Zanzibar"];
+        const regionList = document.getElementById('regionList');
+
+        function renderRegions() {
+            regionList.innerHTML = REGIONS.map(reg => {
+                let count = localStorage.getItem('count_'+reg) || 0;
+                return `
+                    <div class="region-row">
+                        <span>${reg}</span>
+                        <input type="number" class="region-count" value="${count}" 
+                               onchange="saveCount('${reg}', this.value)">
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function saveCount(reg, val) {
+            localStorage.setItem('count_'+reg, val);
+        }
+
+        renderRegions();
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.style.background = "rgba(0,0,0,0.95)";
+                nav.style.padding = "15px 50px";
+            } else {
+                nav.style.background = "linear-gradient(to bottom, rgba(0,0,0,0.8), transparent)";
+                nav.style.padding = "20px 50px";
+            }
+        });
+    </script>
 </body>
 </html>
